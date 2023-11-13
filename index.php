@@ -65,6 +65,7 @@
                         <th scope="col">Equipo</th>
                         <th scope="col">Ciudad</th>
                         <th scope="col">Deporte</th>
+                        <th scope="col">Ver detalle</th>
                     </tr>
                 </thead>
                 <tbody class="row-clickable">
@@ -74,6 +75,7 @@
                             <td><h6><?php echo htmlspecialchars($team['name']); ?></h6></td>
                             <td><?php echo htmlspecialchars($team['city']); ?></td>
                             <td><?php echo htmlspecialchars($team['sport']); ?></td>
+                            <td><a class="brand-text" href="detail_team.php?id=<?php echo $team['id'] ?>">Más info</a></td>
                         </tr>    
                     <?php endforeach; ?>
                 </tbody>
