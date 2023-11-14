@@ -4,6 +4,7 @@
 
 // autoloads
 include 'config/db_connect_pdo.php';
+include 'config/general_config.php';
 include 'models/Team.php';
 include 'models/TeamDao.php';
 include 'controllers/TeamCtrl.php';
@@ -42,6 +43,11 @@ switch ($route) {
         $playerId = isset($_GET['id']) ? $_GET['id'] : null;
         $teamId   = isset($_GET['teamid']) ? $_GET['teamid'] : null;
         $playerController->deletePlayer($playerId, $teamId);
+        break;
+
+    case 'add-player':
+        $teamId = isset($_GET['teamId']) ? $_GET['teamId'] : null;
+        $playerController->addPlayer($teamId);
         break;
 
     default:

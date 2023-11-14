@@ -12,6 +12,8 @@
         <p>Deporte <?php echo htmlspecialchars($team->getSport()); ?></p>
         <p>Creado el <?php echo date($team->getCreatedAt()); ?></p>
 
+        <a href="index.php?route=add-player&teamId=<?php echo $team->getId(); ?>" class="btn brand z-depth-0">Crea un Jugador</a>
+        
     <?php else: ?>
         <h5>El equipo no existe.</h5>
     <?php endif ?>
