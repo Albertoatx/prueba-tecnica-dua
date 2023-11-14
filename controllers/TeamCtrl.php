@@ -3,10 +3,12 @@
 class TeamController {
 
     private $teamDao;
+    private $playerDao;
 
 
-    public function __construct(TeamDao $teamDao) {
-        $this->teamDao = $teamDao;
+    public function __construct(TeamDao $teamDao, PlayerDao $playerDao) {
+        $this->teamDao      = $teamDao;
+        $this->playerDao    = $playerDao;
     }
 
 
@@ -29,6 +31,26 @@ class TeamController {
     }
 
 
+    public function mapDaoResultsPlayers($daoRows){
+        $players = array();
+        
+        if ($daoRows != null && sizeof($daoRows) > 0) {
+            foreach ($daoRows as $row) {                
+                $players[] = new Player(
+                    $row[Player::PLAYER_ID],
+                    $row[Player::PLAYER_NAME],
+                    $row[Player::PLAYER_NUMBER],
+                    $row[Player::PLAYER_TEAM_ID],
+                    $row[Player::PLAYER_CREATED_AT],
+                    $row[Player::PLAYER_EDITED_AT]
+                );
+            }
+        }
+
+        return $players;
+    }
+
+
     public function listTeams() {
         $teamsRows = $this->teamDao->getTeams();
     
@@ -46,7 +68,10 @@ class TeamController {
             $row[Team::TEAM_CITY],
             $row[Team::TEAM_SPORT],
             $row[Team::TEAM_CREATED_AT]
-        );    
+        ); 
+        
+        $rowPlayers = $this->playerDao->getPlayersByTeam($teamId);
+        $players = $this->mapDaoResultsPlayers($rowPlayers);
         include_once('templates/team/detail.php');
     }
 

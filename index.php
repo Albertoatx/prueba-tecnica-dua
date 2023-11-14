@@ -8,9 +8,13 @@ include 'models/Team.php';
 include 'models/TeamDao.php';
 include 'controllers/TeamCtrl.php';
 
+include 'models/Player.php';
+include 'models/PlayerDao.php';
+
 
 $teamDao        = new TeamDao($pdo);
-$teamController = new TeamController($teamDao);
+$playerDao      = new PlayerDao($pdo);
+$teamController = new TeamController($teamDao, $playerDao);
 
 
 // receives route "index.php?route=list-teams"
