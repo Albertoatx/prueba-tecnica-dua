@@ -6,7 +6,8 @@
             <tr>
                 <th>Nombre</th>
                 <th>Numero</th>
-                <th>Acción Borrar</th>
+                <th>Editar</th>
+                <th>Borrar</th>
             </tr>
         </thead>
         <tbody>
@@ -14,6 +15,9 @@
                 <tr>
                     <td><?php echo $player->getName(); ?></td>
                     <td><?php echo $player->getNumber(); ?></td>
+                    <td>
+                        <a href="index.php?route=update-player&id=<?php echo $player->getId(); ?>">Editar</a>
+                    </td>
                     <td>
                         <a href="index.php?route=delete-player&id=<?php echo $player->getId(); ?>&teamid=<?php echo $team->getId() ?> ">Borrar</a>
                     </td>

@@ -50,6 +50,11 @@ switch ($route) {
         $playerController->addPlayer($teamId);
         break;
 
+    case 'update-player':
+        $playerId = isset($_GET['id']) ? $_GET['id'] : null;
+        $playerController->updatePlayer($playerId);
+        break;
+
     default:
         echo 'Route not Found';
 }

@@ -31,6 +31,16 @@ class PlayerDao {
     }
 
 
+    public function getPlayerById($playerId) {
+
+        $sql = 'SELECT id, name, number, team_id, created_at, edited_at FROM ' . self::PLAYER_TABLE  . ' WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$playerId]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function deletePlayer($playerId) {
 
         $sql = 'DELETE FROM ' . self::PLAYER_TABLE  . ' WHERE id = ?';
@@ -57,5 +67,15 @@ class PlayerDao {
 
         return $stmt->fetch(PDO::FETCH_ASSOC);      // returns one player if exists
     }
+
+
+    public function updatePlayer($name, $number, $playerId) {
+
+        $sql = 'UPDATE ' . self::PLAYER_TABLE . ' SET name = ?, number = ?  WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+
+        return $stmt->execute([$name, $number, $playerId]);  // returns a boolean
+    }
+
 
 }
