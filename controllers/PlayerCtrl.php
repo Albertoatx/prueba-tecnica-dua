@@ -25,12 +25,12 @@ class PlayerController {
 
     public function addPlayer($teamId) {
 
+        $errors  = array('name' => '', 'number' => '', 'teamId' => '', 'others' => '');
+        $pName   = '';
+        $pNumber = null;
+
         // Server-side validation
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            $pName   = '';
-            $pNumber = null;
-            $errors  = array('name' => '', 'number' => '', 'teamId' => '', 'others' => '');
 
             // check name
             if(empty($_POST['name'])){
