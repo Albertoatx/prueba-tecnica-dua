@@ -27,7 +27,8 @@
             <a href="index.php" class="brand-logo brand-text">Duacode test</a>
 
             <ul id="nav-mobile" class="right">
-                <li><a href="add_team.php" class="btn brand z-depth-0">Add a Team</a></li>
+                <!-- <li><a href="add_team.php" class="btn brand z-depth-0">Add a Team</a></li> -->
+                <li><a href="index.php?route=add-team" class="btn brand z-depth-0">Add a Team</a></li>
             </ul>
         </div>
     </nav>

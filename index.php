@@ -26,6 +26,10 @@ switch ($route) {
         $teamId = isset($_GET['id']) ? $_GET['id'] : null;
         $teamController->detailTeam($teamId);
         break;
+
+    case 'add-team':
+        $teamController->addTeam();
+        break;
     
     default:
         echo 'Route not Found';
