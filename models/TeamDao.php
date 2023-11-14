@@ -18,4 +18,15 @@ class TeamDao {
     }
 
 
+    public function getTeamById($teamId) {
+
+        $sql = 'SELECT id, name, city, sport, created_at FROM team WHERE id = ?';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([htmlspecialchars($teamId)]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
 }

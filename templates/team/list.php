@@ -21,7 +21,8 @@
                             <td><h6><?php echo htmlspecialchars($team->getName()); ?></h6></td>
                             <td><?php echo htmlspecialchars($team->getCity()); ?></td>
                             <td><?php echo htmlspecialchars($team->getSport()); ?></td>
-                            <td><a class="brand-text" href="detail_team.php?id=<?php echo $team->getId() ?>">Más info</a></td>
+                            <!-- <td><a class="brand-text" href="detail_team.php?id=<?php echo $team->getId() ?>">Más info</a></td> -->
+                            <td><a class="brand-text" href="index.php?route=get-team&id=<?php echo $team->getId() ?>">Más info</a></td>
                         </tr>    
                     <?php endforeach; ?>
 

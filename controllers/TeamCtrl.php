@@ -37,4 +37,17 @@ class TeamController {
         include_once('templates/team/list.php');
     }
 
+
+    public function detailTeam($teamId) {
+        $row = $this->teamDao->getTeamById($teamId);
+        $team = new Team(
+            $row[Team::TEAM_ID],
+            $row[Team::TEAM_NAME],
+            $row[Team::TEAM_CITY],
+            $row[Team::TEAM_SPORT],
+            $row[Team::TEAM_CREATED_AT]
+        );    
+        include_once('templates/team/detail.php');
+    }
+
 }
