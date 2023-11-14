@@ -31,4 +31,13 @@ class PlayerDao {
     }
 
 
+    public function deletePlayer($playerId) {
+
+        $sql = 'DELETE FROM ' . self::PLAYER_TABLE  . ' WHERE id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        
+        return $stmt->execute([$playerId]);  // returns a boolean
+    }
+
+
 }

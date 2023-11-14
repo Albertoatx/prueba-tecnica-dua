@@ -6,6 +6,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Numero</th>
+                <th>Acción Borrar</th>
             </tr>
         </thead>
         <tbody>
@@ -13,6 +14,9 @@
                 <tr>
                     <td><?php echo $player->getName(); ?></td>
                     <td><?php echo $player->getNumber(); ?></td>
+                    <td>
+                        <a href="index.php?route=delete-player&id=<?php echo $player->getId(); ?>&teamid=<?php echo $team->getId() ?> ">Borrar</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
