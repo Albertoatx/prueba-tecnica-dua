@@ -42,7 +42,8 @@ class TeamController {
                     $row[Player::PLAYER_NUMBER],
                     $row[Player::PLAYER_TEAM_ID],
                     $row[Player::PLAYER_CREATED_AT],
-                    $row[Player::PLAYER_EDITED_AT]
+                    $row[Player::PLAYER_EDITED_AT],
+                    $row[Player::PLAYER_IS_CAPTAIN]
                 );
             }
         }

@@ -6,6 +6,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Numero</th>
+                <th>Capitán</th>
                 <th>Editar</th>
                 <th>Borrar</th>
             </tr>
@@ -15,6 +16,7 @@
                 <tr>
                     <td><?php echo $player->getName(); ?></td>
                     <td><?php echo $player->getNumber(); ?></td>
+                    <td><?php echo ($player->getIsCaptain() ? "Sí" : "") ?></td>
                     <td>
                         <a href="index.php?route=update-player&id=<?php echo $player->getId(); ?>">Editar</a>
                     </td>

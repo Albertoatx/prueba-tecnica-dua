@@ -2,13 +2,14 @@
 
 class Player {
 
-    
+
     const PLAYER_ID       = "id";
     const PLAYER_NAME     = "name";
     const PLAYER_NUMBER   = "number";
     const PLAYER_TEAM_ID  = "team_id";
     const PLAYER_CREATED_AT = "created_at";
     const PLAYER_EDITED_AT = "edited_at";
+    const PLAYER_IS_CAPTAIN = "is_captain";
 
     
     private $id;
@@ -17,15 +18,17 @@ class Player {
     private $teamId;
     private $createdAt;
     private $editedAt;
+    private $isCaptain;
 
 
-    public function __construct($id, $name, $number, $teamId, $createdAt, $editedAt) {
+    public function __construct($id, $name, $number, $teamId, $createdAt, $editedAt, $isCaptain) {
         $this->id         = $id;
         $this->name       = $name;
         $this->number     = $number;
         $this->teamId     = $teamId;
         $this->createdAt  = $createdAt;
         $this->editedAt   = $editedAt;
+        $this->isCaptain   = $isCaptain;
     }
 
 
@@ -60,6 +63,10 @@ class Player {
         return $this->editedAt;
     }
 
+    public function getIsCaptain()
+    {
+        return $this->isCaptain;
+    }
 
     // SETTERS
     public function setId($id)
@@ -90,6 +97,11 @@ class Player {
     public function setEditedAt($editedAt)
     {
         $this->editedAt = $editedAt;
+    }
+
+    public function setIsCaptain($isCaptain)
+    {
+        $this->isCaptain = $isCaptain;
     }
 
 }

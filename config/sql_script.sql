@@ -45,3 +45,8 @@ INSERT INTO `player` (`id`, `name`, `number`, `team_id`, `created_at`, `edited_a
 INSERT INTO `player` (`id`, `name`, `number`, `team_id`, `created_at`, `edited_at`) VALUES (NULL, 'Arda Güler', 24, 1, current_timestamp(), current_timestamp());
 INSERT INTO `player` (`id`, `name`, `number`, `team_id`, `created_at`, `edited_at`) VALUES (NULL, 'Oscar Piastri', 81, 3, current_timestamp(), current_timestamp());
 INSERT INTO `player` (`id`, `name`, `number`, `team_id`, `created_at`, `edited_at`) VALUES (NULL, 'Lando Norris', 4, 3, current_timestamp(), current_timestamp());
+
+
+
+ALTER TABLE `player`
+ADD COLUMN `is_captain` BOOLEAN DEFAULT 0 AFTER `team_id`;

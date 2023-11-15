@@ -28,7 +28,7 @@
 
             <ul id="nav-mobile" class="right">
                 <!-- <li><a href="add_team.php" class="btn brand z-depth-0">Add a Team</a></li> -->
-                <li><a href="index.php?route=add-team" class="btn brand z-depth-0">Add a Team</a></li>
+                <li><a href="index.php?route=add-team" class="btn brand z-depth-0">Crear un Equipo</a></li>
             </ul>
         </div>
     </nav>

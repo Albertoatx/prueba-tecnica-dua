@@ -17,6 +17,12 @@
         <input type="number" name="number" min="0" max="999999" value="<?php echo htmlspecialchars($pNumber) ?>">
         <div class="red-text"><?php echo $errors['number']; ?></div>
 
+        <label>
+            <input type="checkbox" name="isCaptain" id="isCaptain"/>
+            <span>Es cápitan</span>
+        </label>
+        <div class="red-text"><?php echo $errors['captain']; ?></div>
+
         <div class="center">
             <input type="submit" name="submit" value="Crear jugador" class="btn brand z-depth-0">
         </div>
