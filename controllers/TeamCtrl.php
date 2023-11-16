@@ -12,17 +12,31 @@ class TeamController {
     }
 
 
-    private function mapDaoResults($daoRows){
+    private function mapDaoResultsTeams($daoRows){
         $teams = array();
         
         if ($daoRows != null && sizeof($daoRows) > 0) {
-            foreach ($daoRows as $row) {                
+            foreach ($daoRows as $row) {     
+                $playerCaptain = $this->playerDao->getTeamCaptain($row[Team::TEAM_ID]);
+
+                $captain = $playerCaptain 
+                    ? new Player(
+                        $playerCaptain[Player::PLAYER_ID],
+                        $playerCaptain[Player::PLAYER_NAME],
+                        $playerCaptain[Player::PLAYER_NUMBER],
+                        $playerCaptain[Player::PLAYER_TEAM_ID],
+                        $playerCaptain[Player::PLAYER_CREATED_AT],
+                        $playerCaptain[Player::PLAYER_EDITED_AT],
+                        $playerCaptain[Player::PLAYER_IS_CAPTAIN]
+                    ) : null;
+
                 $teams[] = new Team(
                     $row[Team::TEAM_ID],
                     $row[Team::TEAM_NAME],
                     $row[Team::TEAM_CITY],
                     $row[Team::TEAM_SPORT],
-                    $row[Team::TEAM_CREATED_AT]
+                    $row[Team::TEAM_CREATED_AT],
+                    $captain
                 );
             }
         }
@@ -55,7 +69,7 @@ class TeamController {
     public function listTeams() {
         $teamsRows = $this->teamDao->getTeams();
     
-        $teams = $this->mapDaoResults($teamsRows);
+        $teams = $this->mapDaoResultsTeams($teamsRows);
 
         include_once('templates/team/list.php');
     }
@@ -68,7 +82,8 @@ class TeamController {
             $row[Team::TEAM_NAME],
             $row[Team::TEAM_CITY],
             $row[Team::TEAM_SPORT],
-            $row[Team::TEAM_CREATED_AT]
+            $row[Team::TEAM_CREATED_AT],
+            NULL
         ); 
         
         $rowPlayers = $this->playerDao->getPlayersByTeam($teamId);

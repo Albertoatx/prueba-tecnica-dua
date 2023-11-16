@@ -14,14 +14,17 @@ class Team {
     private $city;
     private $sport;
     private $created_at;
+    private $captain;
 
 
-    public function __construct($id, $name, $city, $sport, $created_at) {
+    public function __construct($id, $name, $city, $sport, $created_at, $captain) {
         $this->id         = $id;
         $this->name       = $name;
         $this->city       = $city;
         $this->sport      = $sport;
         $this->created_at = $created_at;
+        $this->created_at = $created_at;
+        $this->captain    = $captain;
     }
 
 
@@ -51,6 +54,11 @@ class Team {
         return $this->created_at;
     }
     
+    public function getCaptain()
+    {
+        return $this->captain;
+    }
+    
 
     // SETTERS
     public function setId($id)
@@ -76,6 +84,11 @@ class Team {
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
+    }
+
+    public function setCaptain($captain)
+    {
+        $this->captain = $captain;
     }
 
 }
