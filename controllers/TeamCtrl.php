@@ -103,6 +103,8 @@ class TeamController {
 
     public function addTeam() {
 
+        // error_log("Script 'addTeam' started");
+
         $teamName = $city = $sport = '';
         $errors = array('name' => '', 'city' => '', 'sport' => '', 'others' => '');
 
@@ -111,10 +113,17 @@ class TeamController {
         if ($sportColumnData) {
             $sportOptions = $this->getEnumValuesAsArray($sportColumnData);
         } 
+        
+        $isAjaxCall = false;
 
-        if(isset($_POST['submit'])){
-            // This code only executes when user clicks "submit" button 
-		
+        // if(isset($_POST['submit'])){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // This code only executes when user clicks "submit" button
+            
+            if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                $isAjaxCall = true;
+            }
+
             // check name
             if(empty($_POST['tname'])){
                 // $errors['name'] = 'Nombre del equipo requerido';
@@ -154,12 +163,25 @@ class TeamController {
                 if ( !$team ){
                     // data not exists -> insert and redirect if insertion ok
                     if ($this->teamDao->addTeam($teamName, $city, $sport)){
-                        header('Location: index.php');
+
+                        if ($isAjaxCall){
+                            header('Content-Type: application/json');                            
+                            echo JsonUtils::prepareResponseDataAsJson('success', 'El equipo se ha creado correctamente', 'index.php');
+                            exit();
+                        } else {
+                            header('Location: index.php');
+                            exit();
+                        }
                     }
                 } else {
                     $errors['others'] = 'Ya existe un equipo con esos mismos datos.';
                 }
+            }
             
+            if ($isAjaxCall){
+                header('Content-Type: application/json');
+                echo JsonUtils::prepareResponseDataAsJson('error', 'Error al intentar crear el equipo. ' . ($errors['others']) ? $errors['others'] : '', null);
+                exit();
             }
     
         } // end POST check
